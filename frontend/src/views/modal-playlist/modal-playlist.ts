@@ -3,7 +3,7 @@ import { TemplateStr } from "../../types/interfaces/TemplateSrt";
 import { getElement } from "../../utility/getElement";
 
 class ModalPlaylist {
-  private element: HTMLElement | null = null
+  public static element: HTMLElement | null = null
     templates: TemplateStr ={
        modal: `<div class="playlists-modal"></div>`,
        modalTitle: `<div class="playlists-modal__title">Добавить в плейлист</div>`,
@@ -14,23 +14,34 @@ class ModalPlaylist {
     render() {
       const modalDOM = getElement(this.templates.modal)
       const modalTitleDOM = getElement(this.templates.modalTitle)
-      // const modalContentDOM = this.getModalPlayListContent()
-      // const modalFooterDOM = getElement(this.templates.modalFooter)
       modalDOM.appendChild(modalTitleDOM)
-      this.element = modalDOM
-      // modalDOM.appendChild(modalContentDOM)
-      // modalDOM.appendChild(modalFooterDOM)
+      ModalPlaylist.element = modalDOM
       return modalDOM
     } 
     getModalPlayListContent(): HTMLElement {
       return getElement(this.templates.modalContent)
+    }
+    public static getModalContainer() {
+      if (this.element) {
+        return this.element
+      }
+    }
+    public static setIdModalId(id: number) {
+      if(this.element){
+        this.element?.setAttribute('id', `modal-trackId-${id}`)
+      }
+    }
+    public static getIdModalId() {
+      if(this.element && this.element.getAttribute('id') && this.element?.getAttribute('id') !== '') {
+        return Number(this.element?.getAttribute('id')?.split('-')[2])
+      }
     }
     getModalPlayListFooterContent(): HTMLElement {
       const modalBtnClose = getElement(this.templates.modalBtnClose)
       const modalFooterDOM = getElement(this.templates.modalFooter)
       modalFooterDOM.appendChild(modalBtnClose)
       modalBtnClose.addEventListener('click', () => {
-        this.element?.classList.remove('show')
+       ModalPlaylist.element?.classList.remove('show')
       })
       return modalFooterDOM
     }

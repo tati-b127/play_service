@@ -1129,6 +1129,22 @@ body {
   display: flex;
   align-items: center;
 }
+.btn-play {
+  display: block;
+}
+.btn-paused {
+  display: block;
+}
+.active svg path{
+  fill: var(--color-promo);
+}
+
+.btn-play.hidden {
+  display: none;
+}
+.btn-paused.hidden {
+  display: none;
+}
 
 .player__value svg {
   margin-right: 9px;

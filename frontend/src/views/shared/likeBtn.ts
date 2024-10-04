@@ -41,6 +41,9 @@ class LikeBtn extends Element{
         }
         return this.element as HTMLElement
     }
+    public getLikeActive(): boolean {
+        return this.active
+    }
 
 }
 export {LikeBtn}

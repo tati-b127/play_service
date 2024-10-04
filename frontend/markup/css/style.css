@@ -1088,12 +1088,18 @@ body {
   width: 18px;
   height: 18px;
 }
+.player__shaffle-btn,
+.player__repeat-btn {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  background-color: #11253D;
+}
 
 .player__controls {
   max-width: 902px;
   width: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .player__controls__header {

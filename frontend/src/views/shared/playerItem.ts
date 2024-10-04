@@ -2,19 +2,21 @@ import {LikeBtn} from "./likeBtn";
 import {TemplateStr} from "../../types/interfaces/TemplateSrt";
 import { getElement } from "../../utility/getElement";
 class PlayerItem {
-    constructor (private title: string, private author: string,  private urlImg: string, private active: boolean) {
+    private templates: TemplateStr
+    constructor (private title: string, private author: string,  private image: string, private active: boolean) {
         this.title = title
         this.author = author
-        this.urlImg = urlImg
+        this.image = image
         this.active = active
-    }
-    templates: TemplateStr  = {
-        playerTrackName: `<div class="player__track-name flex"></div>`,
-        trackImg: `<img class="player__track__img" src="${this.urlImg}" alt="${this.title}">`,
-        trackTitle: `<h3 class="player__track__h3">${this.title}</h3>`,
-        trackHeader: `<div class="flex player__name__header"></div>`,
-        trackContent: `<div class="player__track-name__content"></div>`,
-        trackAuthor: `<p class="player__track__author">${this.author}</p>`
+        this.templates = {
+            playerTrackName: `<div class="player__track-name flex"></div>`,
+            trackImg: `<img class="player__track__img" src="${this.image}" alt="${this.title}">`,
+            trackTitle: `<h3 class="player__track__h3">${this.title}</h3>`,
+            trackHeader: `<div class="flex player__name__header"></div>`,
+            trackContent: `<div class="player__track-name__content"></div>`,
+            trackAuthor: `<p class="player__track__author">${this.author}</p>`
+        }
+    
     }
     render():HTMLElement {
         const name = getElement(this.templates.playerTrackName)
